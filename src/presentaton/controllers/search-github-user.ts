@@ -2,17 +2,13 @@ import { IGithubUser } from '../../domain/models/github-user'
 import { ISearchByGithubUser } from '../../domain/use-case/search-by-github-user'
 
 export class SearchGithubUserController implements ISearchByGithubUser {
+  constructor (
+    private readonly searchGithubUser: ISearchByGithubUser
+  ) {}
+
   async search (data: { name: string }): Promise<IGithubUser> {
-    return {
-      id: 1,
-      name: 'any_name',
-      email: 'any_email',
-      avatarUrl: 'any_avatarUrl',
-      publicRepos: 1,
-      company: 'any_company',
-      login: 'any_login',
-      bio: 'any_bio',
-      createdAt: 'any_createdAt'
-    }
+    const user = await this.searchGithubUser.search(data)
+
+    return user
   }
 };
