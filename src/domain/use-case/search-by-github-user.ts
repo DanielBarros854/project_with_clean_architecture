@@ -1,4 +1,4 @@
-import { IGithubUser } from '../github-user'
+import { IGithubUser } from '../models/github-user'
 
 type Input = {
   name: string
