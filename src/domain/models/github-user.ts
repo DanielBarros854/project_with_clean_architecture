@@ -7,5 +7,5 @@ export type IGithubUser = {
   company: string
   login: string
   bio: string
-  createAt: string
+  createdAt: string
 }
