@@ -4,6 +4,10 @@
   "main": "index.js",
   "author": "DanielBarros854 <91908602+DanielBarros854@users.noreply.github.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "jest --watch -o --no-cache",
+    "test:unit": "yarn test"
+  },
   "devDependencies": {
     "@types/jest": "^27.4.0",
     "@types/typescript": "^2.0.0",
