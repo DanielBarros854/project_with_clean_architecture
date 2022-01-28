@@ -22,18 +22,21 @@ describe('search githubUser controller', () => {
   it('should return with correct values', async () => {
     const sut = new SearchGithubUserController(new SearchGithubUserStub())
 
-    const user = await sut.search({ name: 'any_login' })
+    const user = await sut.handle({ name: 'any_login' })
 
     expect(user).toEqual({
-      id: 1,
-      name: 'any_name',
-      email: 'any_email',
-      avatarUrl: 'any_avatarUrl',
-      publicRepos: 1,
-      company: 'any_company',
-      login: 'any_login',
-      bio: 'any_bio',
-      createdAt: 'any_createdAt'
+      statusCode: 200,
+      data: {
+        id: 1,
+        name: 'any_name',
+        email: 'any_email',
+        avatarUrl: 'any_avatarUrl',
+        publicRepos: 1,
+        company: 'any_company',
+        login: 'any_login',
+        bio: 'any_bio',
+        createdAt: 'any_createdAt'
+      }
     })
   })
 })
