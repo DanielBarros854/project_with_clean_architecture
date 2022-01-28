@@ -1,6 +1,7 @@
 import { IGithubUser } from '../../../src/domain/models/github-user'
 import { ISearchByGithubUser } from '../../../src/domain/use-case/search-by-github-user'
 import { SearchGithubUserController } from '../../../src/presentaton/controllers/search-github-user'
+import { ok } from '../../../src/presentaton/helper'
 
 class SearchGithubUserStub implements ISearchByGithubUser {
   async search (data: { name: string }): Promise<IGithubUser> {
@@ -24,19 +25,16 @@ describe('search githubUser controller', () => {
 
     const user = await sut.handle({ name: 'any_login' })
 
-    expect(user).toEqual({
-      statusCode: 200,
-      data: {
-        id: 1,
-        name: 'any_name',
-        email: 'any_email',
-        avatarUrl: 'any_avatarUrl',
-        publicRepos: 1,
-        company: 'any_company',
-        login: 'any_login',
-        bio: 'any_bio',
-        createdAt: 'any_createdAt'
-      }
-    })
+    expect(user).toEqual(ok({
+      id: 1,
+      name: 'any_name',
+      email: 'any_email',
+      avatarUrl: 'any_avatarUrl',
+      publicRepos: 1,
+      company: 'any_company',
+      login: 'any_login',
+      bio: 'any_bio',
+      createdAt: 'any_createdAt'
+    }))
   })
 })
