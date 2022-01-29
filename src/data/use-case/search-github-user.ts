@@ -8,8 +8,18 @@ export class SearchGithubUser implements ISearchByGithubUser {
   }
 
   async search (data: { name: string }): Promise<IGithubUser> {
-    const user = this.apiSearchGithubUser.search(data.name)
+    const user = await this.apiSearchGithubUser.search(data.name)
 
-    return user
+    return {
+      id: user.id,
+      avatarUrl: user.avatar_url,
+      bio: user.bio,
+      company: user.company,
+      createdAt: user.created_at,
+      email: user.email,
+      login: user.login,
+      name: user.name,
+      publicRepos: user.public_repos
+    }
   }
 }
