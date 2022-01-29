@@ -5,6 +5,7 @@
   "author": "DanielBarros854 <91908602+DanielBarros854@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
+    "dev": "ts-node-dev --respawn --quiet --rs --transpile-only ./src/main/index.ts",
     "test": "jest --watch -o --no-cache",
     "test:unit": "yarn test"
   },
