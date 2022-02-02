@@ -41,7 +41,17 @@ describe('Search GithubUser data', () => {
 
     jest.spyOn(apiSearchGithubUserStub, 'search').mockRejectedValueOnce(new Error('ERRO'))
 
-    const sutReturn = sut.search({ name: 'test' })
+    const sutReturn = sut.search({ name: 'any_login' })
     await expect(sutReturn).rejects.toThrow('ERRO')
+  })
+
+  it('should call apiSearchGithubUser with correct values', async () => {
+    const apiSearchGithubUserStub = new ApiSearchGithubUserStub()
+    const sut = new SearchGithubUser(apiSearchGithubUserStub)
+
+    const apiSearchGithubUserSpy = jest.spyOn(apiSearchGithubUserStub, 'search')
+
+    await sut.search({ name: 'any_login' })
+    expect(apiSearchGithubUserSpy).toBeCalledWith('any_login')
   })
 })
