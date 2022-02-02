@@ -1,5 +1,5 @@
 import { SearchGithubUser } from '../../../src/data/use-case/search-github-user'
-import { IApiSearchGithubUser } from '../../../src/presentaton/contract/api-search-github-user'
+import { IApiSearchGithubUser } from '../../../src/data/contract/api-search-github-user'
 
 class ApiSearchGithubUserStub implements IApiSearchGithubUser {
   async search (name: string): Promise<any> {

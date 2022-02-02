@@ -1,6 +1,7 @@
 import { IGithubUser } from '../../../src/domain/models/github-user'
 import { ISearchByGithubUser } from '../../../src/domain/use-case/search-by-github-user'
-import { SearchGithubUserController } from '../../../src/presentaton/controllers/search-github-user'
+import { SearchGithubUserController } from '../../../src/presentation/controllers/search-github-user'
+import { ok } from '../../../src/presentation/helper'
 
 class SearchGithubUserStub implements ISearchByGithubUser {
   async search (data: { name: string }): Promise<IGithubUser> {

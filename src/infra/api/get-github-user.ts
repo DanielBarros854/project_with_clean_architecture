@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { IApiSearchGithubUser } from '../../presentaton/contract/api-search-github-user'
+import { IApiSearchGithubUser } from '../../data/contract/api-search-github-user'
 
 export class GetGithubUser implements IApiSearchGithubUser {
   async search (name: string): Promise<any> {

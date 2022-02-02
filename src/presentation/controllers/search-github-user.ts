@@ -1,4 +1,3 @@
-import { Request } from 'express'
 import { IGithubUser } from '../../domain/models/github-user'
 import { ISearchByGithubUser } from '../../domain/use-case/search-by-github-user'
 import { IController } from '../contract/controller'
@@ -10,9 +9,9 @@ export class SearchGithubUserController implements IController {
     private readonly searchGithubUser: ISearchByGithubUser
   ) {}
 
-  async handle (data: Request): Promise<IHttpResponse<IGithubUser>> {
+  async handle (data: { name: string }): Promise<IHttpResponse<IGithubUser>> {
     try {
-      const { name } = data.params
+      const { name } = data
 
       const user = await this.searchGithubUser.search({ name })
 

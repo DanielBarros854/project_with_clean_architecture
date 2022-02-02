@@ -1,6 +1,6 @@
 import { IGithubUser } from '../../domain/models/github-user'
 import { ISearchByGithubUser } from '../../domain/use-case/search-by-github-user'
-import { IApiSearchGithubUser } from '../../presentaton/contract/api-search-github-user'
+import { IApiSearchGithubUser } from '../contract/api-search-github-user'
 
 export class SearchGithubUser implements ISearchByGithubUser {
   constructor (private readonly apiSearchGithubUser: IApiSearchGithubUser) {
