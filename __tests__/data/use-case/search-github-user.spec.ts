@@ -17,9 +17,23 @@ class ApiSearchGithubUserStub implements IApiSearchGithubUser {
   }
 }
 
+type IMakeSut = {
+  sut: SearchGithubUser
+  apiSearchGithubUserStub: ApiSearchGithubUserStub
+}
+
+const makeSut = (): IMakeSut => {
+  const apiSearchGithubUserStub = new ApiSearchGithubUserStub()
+  const sut = new SearchGithubUser(apiSearchGithubUserStub)
+  return {
+    sut,
+    apiSearchGithubUserStub
+  }
+}
+
 describe('Search GithubUser data', () => {
   it('should return with correct values', async () => {
-    const sut = new SearchGithubUser(new ApiSearchGithubUserStub())
+    const { sut } = makeSut()
     const user = await sut.search({ name: 'any_login' })
 
     expect(user).toEqual({
@@ -36,8 +50,7 @@ describe('Search GithubUser data', () => {
   })
 
   it('should throw if apiSearchGithubUser throws', async () => {
-    const apiSearchGithubUserStub = new ApiSearchGithubUserStub()
-    const sut = new SearchGithubUser(apiSearchGithubUserStub)
+    const { sut, apiSearchGithubUserStub } = makeSut()
 
     jest.spyOn(apiSearchGithubUserStub, 'search').mockRejectedValueOnce(new Error('ERRO'))
 
@@ -46,8 +59,7 @@ describe('Search GithubUser data', () => {
   })
 
   it('should call apiSearchGithubUser with correct values', async () => {
-    const apiSearchGithubUserStub = new ApiSearchGithubUserStub()
-    const sut = new SearchGithubUser(apiSearchGithubUserStub)
+    const { sut, apiSearchGithubUserStub } = makeSut()
 
     const apiSearchGithubUserSpy = jest.spyOn(apiSearchGithubUserStub, 'search')
 
