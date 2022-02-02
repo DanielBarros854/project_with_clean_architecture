@@ -34,4 +34,14 @@ describe('Search GithubUser data', () => {
       createdAt: 'any_createdAt'
     })
   })
+
+  it('should throw if apiSearchGithubUser throws', async () => {
+    const apiSearchGithubUserStub = new ApiSearchGithubUserStub()
+    const sut = new SearchGithubUser(apiSearchGithubUserStub)
+
+    jest.spyOn(apiSearchGithubUserStub, 'search').mockRejectedValueOnce(new Error('ERRO'))
+
+    const sutReturn = sut.search({ name: 'test' })
+    await expect(sutReturn).rejects.toThrow('ERRO')
+  })
 })
